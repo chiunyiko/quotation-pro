@@ -147,11 +147,15 @@ const App: React.FC = () => {
     updateProject({ items: [...(currentProject?.items || []), newItem] });
   };
 
-  const openPicker = (ref: React.RefObject<HTMLInputElement>) => {
-    if (ref.current && 'showPicker' in ref.current) {
-      ref.current.showPicker();
+  const openPicker = (ref: React.RefObject<HTMLInputElement | null>) => {
+    const el = ref.current;
+    if (!el) return;
+    
+    // 使用 any 避開 TS 對於 showPicker 的型別限制，這是較新的瀏覽器 API
+    if ('showPicker' in el) {
+      (el as any).showPicker();
     } else {
-      ref.current?.focus();
+      el.focus();
     }
   };
 
