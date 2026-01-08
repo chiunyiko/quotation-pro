@@ -151,11 +151,12 @@ const App: React.FC = () => {
     const el = ref.current;
     if (!el) return;
     
-    // 使用 any 避開 TS 對於 showPicker 的型別限制，這是較新的瀏覽器 API
-    if ('showPicker' in el) {
-      (el as any).showPicker();
-    } else {
-      el.focus();
+    // 將 el 斷言為 any 以徹底避開 TypeScript 對 showPicker 及其分支的靜態分析錯誤
+    const input = el as any;
+    if (input.showPicker) {
+      input.showPicker();
+    } else if (input.focus) {
+      input.focus();
     }
   };
 
