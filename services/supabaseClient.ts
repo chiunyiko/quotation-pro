@@ -1,14 +1,14 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// 從環境變數讀取配置（部署到 Vercel 時需設定這些 Key）
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+// ⚠️ 重要：請在此處替換為您的實際 Supabase 資訊
+const supabaseUrl = 'https://your-project-url.supabase.co';
+const supabaseAnonKey = 'your-anon-key';
 
 const isConfigured = 
   supabaseUrl && 
   supabaseUrl.startsWith('https://') && 
-  supabaseAnonKey;
+  !supabaseUrl.includes('your-project-url');
 
 export const supabase = isConfigured 
   ? createClient(supabaseUrl, supabaseAnonKey)

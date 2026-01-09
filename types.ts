@@ -9,6 +9,8 @@ export interface ServiceItem {
   remark: string;
   dailyCost: number;
   estimatedDays: number;
+  customIcon?: string; // Icon name from Lucide
+  customColor?: string; // Hex color code
 }
 
 export interface RateItem {
@@ -20,7 +22,7 @@ export interface RateItem {
 
 export interface Project {
   id: string;
-  user_id?: string; // 新增：存入 Supabase 的使用者 ID
+  user_id?: string;
   projectName: string;
   clientName: string;
   startDate: string;
